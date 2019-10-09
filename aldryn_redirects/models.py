@@ -17,7 +17,7 @@ from .validators import validate_inbound_route, validate_outbound_route
 @python_2_unicode_compatible
 class Redirect(TranslatableModel):
     site = models.ForeignKey(
-        Site, related_name='aldryn_redirects_redirect_set')
+        Site, models.CASCADE, related_name='aldryn_redirects_redirect_set')
     old_path = models.CharField(
         _('redirect from'), max_length=400, db_index=True,
         help_text=_(
@@ -94,7 +94,7 @@ class StaticRedirect(models.Model):
 
 
 class StaticRedirectInboundRouteQueryParam(models.Model):
-    static_redirect = models.ForeignKey(StaticRedirect, related_name='query_params', on_delete=models.CASCADE)
+    static_redirect = models.ForeignKey(StaticRedirect, models.CASCADE, related_name='query_params', on_delete=models.CASCADE)
     key = models.CharField(_('Key'), max_length=255)
     value = models.CharField(_('Value'), max_length=255, blank=True)
 
