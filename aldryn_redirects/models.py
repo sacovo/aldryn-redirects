@@ -94,7 +94,7 @@ class StaticRedirect(models.Model):
 
 
 class StaticRedirectInboundRouteQueryParam(models.Model):
-    static_redirect = models.ForeignKey(StaticRedirect, models.CASCADE, related_name='query_params', on_delete=models.CASCADE)
+    static_redirect = models.ForeignKey(StaticRedirect, related_name='query_params', on_delete=models.CASCADE)
     key = models.CharField(_('Key'), max_length=255)
     value = models.CharField(_('Value'), max_length=255, blank=True)
 
